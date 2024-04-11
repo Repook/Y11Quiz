@@ -15,16 +15,15 @@ public class Main {
         String[] mathQuestions = {"Whats 50 + 12?","Whats 2 x 7?","Whats 43 - 4?","Whats 20 / 2?"};
         String[] mathAnswers = {"62","14","39","10"};
 
+        System.out.println("Welcome to the TEST. We will need you to answer the questions provided.\nBut first, what is your name?");
+        //gets the user's name and saves it for later
+        String username = scanner.nextLine();
+        System.out.println("Welcome " + username + " to the TEST. Please answer the questions provided.");
 
         //while loop so that if the user wants they can redo the quiz
         while (keepPlaying) {
             rightAnswers = 0;
             boolean yesOrNo = true;
-
-            //saves the input of the user in a string, this is done as if it was saved as an int it caused issues
-            //String whichQuestions = scanner.nextLine();
-
-            //checks what section of questions the user would like to do
 
             answerAllTheQuestions(mathQuestions, mathAnswers, scanner);
             System.out.println("You got " + rightAnswers + "/" + mathAnswers.length + " questions right " + "!");
