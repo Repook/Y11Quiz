@@ -9,16 +9,44 @@ public class Main {
         boolean keepPlaying = true;
         Scanner scanner = new Scanner(System.in);
 
-        String[] mathQuestions = {"Whats 50 + 12?","Whats 2 x 7?","Whats 43 - 4?","Whats 20 / 2?"};
-        String[] mathAnswers = {"62","14","39","10"};
+        //math question and answers
+        ArrayList<String> mathQuestions = new ArrayList<>();
+        mathQuestions.add("Whats 50 + 12?");
+        mathQuestions.add("Whats 2 x 7?");
+        mathQuestions.add("Whats 43 - 4?");
+        mathQuestions.add("Whats 20 / 2?");
 
-        String[] geoQuestions = {"What is the capital of France?","What city has the largest population in New Zealand?",
-                "What does UK stand for?","What country has the biggest population?"};
-        String[] geoAnswers = {"PARIS","AUCKLAND","UNITED KINGDOM","CHINA"};
+        ArrayList<String> mathAnswers = new ArrayList<>();
+        mathAnswers.add("62");
+        mathAnswers.add("14");
+        mathAnswers.add("39");
+        mathAnswers.add("10");
 
-        String[] engQuestions = {"Who wrote Hamlet?","What word is used to identify people, places, or things?",
-                "How many letters are in the alphabet?","What figure of speech involves comparing things using the words 'like' or 'as'?"};
-        String[] engAnswers = {"SHAKESPEARE","NOUN","26","SIMILE"};
+        //geography question and answers
+        ArrayList<String> geoQuestions = new ArrayList<>();
+        geoQuestions.add("What is the capital of France?");
+        geoQuestions.add("What city has the largest population in New Zealand?");
+        geoQuestions.add("What does UK stand for?");
+        geoQuestions.add("What country has the biggest population?");
+
+        ArrayList<String> geoAnswers = new ArrayList<>();
+        geoAnswers.add("PARIS");
+        geoAnswers.add("AUCKLAND");
+        geoAnswers.add("UNITED KINGDOM");
+        geoAnswers.add("CHINA");
+
+        //english questions and answers
+        ArrayList<String> engQuestions = new ArrayList<>();
+        engQuestions.add("Who wrote Hamlet?");
+        engQuestions.add("What word is used to identify people, places, or things?");
+        engQuestions.add("How many letters are in the alphabet?");
+        engQuestions.add("What figure of speech involves comparing things using the words 'like' or 'as'?");
+
+        ArrayList<String> engAnswers = new ArrayList<>();
+        engAnswers.add("SHAKESPEARE");
+        engAnswers.add("NOUN");
+        engAnswers.add("26");
+        engAnswers.add("SIMILE");
 
         System.out.println("Welcome to the TEST. We will need you to answer the questions provided.\nBut first, what is your name?");
         //gets the user's name and saves it for later
@@ -41,21 +69,21 @@ public class Main {
                 switch (whichQuestions) {
                     case "1" -> {
                         //math questions
-                        int answers = mathAnswers.length;
+                        int answers = mathAnswers.size();
                         answerAllTheQuestions(mathQuestions, mathAnswers, scanner);
                         System.out.println("You got " + rightAnswers + "/" + answers + " questions right " + username + "!");
                         checkSubjectQuestions = false;
                     }
                     case "2" -> {
                         //english questions
-                        int answers = engAnswers.length;
+                        int answers = engAnswers.size();
                         answerAllTheQuestions(engQuestions, engAnswers, scanner);
                         System.out.println("You got " + rightAnswers + "/" + answers + " questions right " + username + "!");
                         checkSubjectQuestions = false;
                     }
                     case "3" -> {
                         //geography questions
-                        int answers = geoAnswers.length;
+                        int answers = geoAnswers.size();
                         answerAllTheQuestions(geoQuestions, geoAnswers, scanner);
                         System.out.println("You got " + rightAnswers + "/" + answers + " questions right" + username + "!");
                         checkSubjectQuestions = false;
@@ -93,13 +121,13 @@ public class Main {
 
     }
 
-    private static void answerAllTheQuestions(String[] questions, String[] answers, Scanner scanner){
+    private static void answerAllTheQuestions(ArrayList<String> questions, ArrayList<String> answers, Scanner scanner){
         //loops for the amount of questions there is
-        for (int i = 0; i < questions.length; i++) {
-            System.out.println(questions[i]);
+        for (int i = 0; i < questions.size(); i++) {
+            System.out.println(questions.get(i));
             String input = scanner.nextLine();
             //checks if user input is the same as the answer
-            if(Objects.equals(input.toUpperCase(), answers[i])){
+            if(Objects.equals(input.toUpperCase(), answers.get(i))){
                 System.out.println("Correct!");
                 rightAnswers++;
                 //if the user did not type the correct answer, they got the question wrong
