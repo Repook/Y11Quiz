@@ -12,14 +12,62 @@ public class Main {
         String[] mathQuestions = {"Whats 50 + 12?","Whats 2 x 7?","Whats 43 - 4?","Whats 20 / 2?"};
         String[] mathAnswers = {"62","14","39","10"};
 
+        String[] geoQuestions = {"What is the capital of France?","What city has the largest population in New Zealand?",
+                "What does UK stand for?","What country has the biggest population?"};
+        String[] geoAnswers = {"PARIS","AUCKLAND","UNITED KINGDOM","CHINA"};
+
+        String[] engQuestions = {"Who wrote Hamlet?","What word is used to identify people, places, or things?",
+                "How many letters are in the alphabet?","What figure of speech involves comparing things using the words 'like' or 'as'?"};
+        String[] engAnswers = {"SHAKESPEARE","NOUN","26","SIMILE"};
+
+        System.out.println("Welcome to the TEST. We will need you to answer the questions provided.\nBut first, what is your name?");
+        //gets the user's name and saves it for later
+        String username = scanner.nextLine();
+        System.out.println("Welcome " + username + " to the TEST. Please answer the questions provided.");
+
 
         //while loop so that if the user wants they can redo the quiz
         while (keepPlaying) {
             rightAnswers = 0;
             boolean yesOrNo = true;
+            boolean checkSubjectQuestions = true;
 
-            answerAllTheQuestions(mathQuestions, mathAnswers, scanner);
-            System.out.println("You got " + rightAnswers + "/" + mathAnswers.length + " questions right " + "!");
+            System.out.println("What set of question would you like to do?\nMath[1]\nEnglish[2]\nGeography[3]?");
+
+            //saves the input of the user in a string, this is done as if it was saved as an int it caused issues
+            String whichQuestions = scanner.nextLine();
+            //checks what section of questions the user would like to do
+            while (checkSubjectQuestions) {
+                switch (whichQuestions) {
+                    case "1" -> {
+                        //math questions
+                        int answers = mathAnswers.length;
+                        answerAllTheQuestions(mathQuestions, mathAnswers, scanner);
+                        System.out.println("You got " + rightAnswers + "/" + answers + " questions right " + username + "!");
+                        checkSubjectQuestions = false;
+                    }
+                    case "2" -> {
+                        //english questions
+                        int answers = engAnswers.length;
+                        answerAllTheQuestions(engQuestions, engAnswers, scanner);
+                        System.out.println("You got " + rightAnswers + "/" + answers + " questions right " + username + "!");
+                        checkSubjectQuestions = false;
+                    }
+                    case "3" -> {
+                        //geography questions
+                        int answers = geoAnswers.length;
+                        answerAllTheQuestions(geoQuestions, geoAnswers, scanner);
+                        System.out.println("You got " + rightAnswers + "/" + answers + " questions right" + username + "!");
+                        checkSubjectQuestions = false;
+                    }
+                    case null, default -> {
+                        //this occurs if the user specifically did not enter 1,2, or 3
+                        System.out.println("That is not a valid answer. Please type 1, 2, or 3.");
+                        System.out.println("What set of question would you like to do?\nMath[1]\nEnglish[2]\nGeography[3]?");
+                        whichQuestions = scanner.nextLine();
+                    }
+                }
+            }
 
             //Asks the user after they finish a section if they would like to quit
             while (yesOrNo) {
